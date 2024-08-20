@@ -3,9 +3,9 @@ info:
   title: FreedomGPT API
   version: 1.0.0
 servers:
-  - url: https://chat.freedomgpt.com/api/v1
+  - url: https://chat.freedomgpt.com
 paths:
-  /chat/completions:
+  /api/v1/chat/completions:
     post:
       summary: Get chat completions
       requestBody:

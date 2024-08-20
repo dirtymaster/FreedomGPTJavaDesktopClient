@@ -23,19 +23,33 @@ public class RequestConfiguration {
 
     public RequestConfiguration() {
         String jarPath = System.getProperty("user.dir");
-        File keyFile = new File(jarPath, "key.txt");
 
+        String keyFileName = "key.txt";
+        try {
+            this.apiKey = readFileIfExists(jarPath, keyFileName);
+        } catch (IOException e) {
+            System.out.println("Файл не найден: " + keyFileName);
+        }
+
+        String urlFileName = "url.txt";
+        try {
+            String url = readFileIfExists(jarPath, urlFileName);
+            if (url != null) {
+                this.url = url;
+            }
+        } catch (IOException e) {
+            System.out.println("Файл не найден: " + urlFileName);
+        }
+    }
+
+    private String readFileIfExists(String jarPath, String fileName) throws IOException {
+        File keyFile = new File(jarPath, fileName);
         if (keyFile.exists()) {
             Path path = Paths.get(keyFile.getAbsolutePath());
-            String content;
-            try {
-                content = new String(Files.readAllBytes(path));
-            } catch (IOException ex) {
-                return;
-            }
-            this.apiKey = content;
+            return new String(Files.readAllBytes(path));
         } else {
             System.out.println("Файл key.txt не найден");
+            return null;
         }
     }
 }

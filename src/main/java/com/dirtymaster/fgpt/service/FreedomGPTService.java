@@ -7,8 +7,6 @@ import com.dirtymaster.fgpt.config.RequestConfiguration;
 import com.dirtymaster.fgpt.model.ChatCompletionRequest;
 import com.dirtymaster.fgpt.model.ChatCompletionResponse;
 import com.dirtymaster.fgpt.model.Message;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
@@ -44,7 +42,7 @@ public class FreedomGPTService {
 
         ChatCompletionResponse response;
         try {
-            response = chatApi.chatCompletionsPost(request);
+            response = chatApi.apiV1ChatCompletionsPost(request);
         } catch (ApiException e) {
             messagesService.addMessage(new Message().content("ERROR").role(Message.RoleEnum.ASSISTANT));
             return;
