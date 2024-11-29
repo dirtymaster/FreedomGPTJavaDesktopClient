@@ -55,6 +55,8 @@ public class FreedomGPTService {
         ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(requestConfiguration.getUrl());
         apiClient.addDefaultHeader(AUTHORIZATION, "BEARER " + requestConfiguration.getApiKey());
+        apiClient.setConnectTimeout(60 * 1000);
+        apiClient.setReadTimeout(60 * 1000);
         this.chatApi = new DefaultApi(apiClient);
     }
 }
