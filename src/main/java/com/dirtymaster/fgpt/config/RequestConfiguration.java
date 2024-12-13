@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 public class RequestConfiguration {
     private String url = "https://chat.freedomgpt.com";
     private String apiKey;
-    private String model = "gpt-4o";
+    private String model = "claude-3.5-sonnet";
     private int maxTokens = Integer.MAX_VALUE;
     private BigDecimal temperature = BigDecimal.valueOf(0.7);
     private int topK;
