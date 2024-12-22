@@ -1,18 +1,15 @@
 package com.dirtymaster.fgpt;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import com.dirtymaster.fgpt.service.FreedomGPTService;
+import com.dirtymaster.fgpt.ui.FreedomGPTUI;
 
-@SpringBootApplication
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class FgptApplication {
-    public static void main(String[] args) {
-        SpringApplicationBuilder builder = new SpringApplicationBuilder(FgptApplication.class);
-        builder.headless(false);
-        builder.run(args);
+    public static void main(String[] args) throws IOException, URISyntaxException {
+        FreedomGPTService freedomGPTService = new FreedomGPTService();
+        FreedomGPTUI freedomGPTUI = new FreedomGPTUI(freedomGPTService);
+        freedomGPTUI.run(args);
     }
 }
